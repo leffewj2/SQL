@@ -1,0 +1,24 @@
+-Create a store database
+CREATE TABLE nuts (id INTEGER PRIMARY KEY, name TEXT, price_per_pound INTEGER, aisle INTEGER, pounds_available INTEGER);
+INSERT INTO nuts VALUES
+(1, "cashews", 4, 1, 106),
+(2, "almonds", 5, 2, 583),
+(3, "walnuts", 4, 3, 483),
+(4, "grapenuts", 2, 3, 293),
+(5, "peanuts", 3, 1, 392),
+(6, "pecans", 6, 2, 459),
+(7, "groundnuts", 2, 1, 234),
+(8, "brazilnuts", 4, 3, 239),
+(9, "sunflower seeds", 1, 4, 438),
+(10, "candied pecans", 7, 5, 232),
+(11, "peanut brittle", 9, 5, 391),
+(12, "salted mixed nuts", 6, 4, 534),
+(13, "original trail mix", 6, 4, 293),
+(14, "sweet trail mix", 7, 4, 299),
+(15, "toffee almonds", 9, 4, 235);
+
+-display the database ordered by price
+SELECT * FROM nuts ORDER BY price_per_pound;
+
+-display the product with the most pounds available in the store
+SELECT name, MAX(pounds_available) From nuts
