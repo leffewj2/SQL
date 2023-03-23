@@ -17,9 +17,10 @@ INSERT INTO student_grades (name, number_grade, fraction_completed)
     VALUES ("Winster", 76, 0.5013);
 INSERT INTO student_grades (name, number_grade, fraction_completed)
     VALUES ("Winstonia", 82, 0.9045);
-
+-- Show the name and the student's grade in percent form
 SELECT name, number_grade, ROUND(100*fraction_completed) AS percent_completed FROM student_grades;
 
+-- Show the number of students with each letter grade
 SELECT COUNT(*),
     CASE
         WHEN number_grade > 90 THEN "A"
