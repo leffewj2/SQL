@@ -1,0 +1,78 @@
+/* Create table about the people and what they do here */
+CREATE TABLE famouspeople
+    (id INTEGER PRIMARY KEY AUTOINCREMENT, 
+    name TEXT, 
+    profession TEXT, 
+    age INTEGER);
+    
+INSERT INTO famouspeople (name, profession, age)
+VALUES ("Blake Lively", "actor", 35);
+INSERT INTO famouspeople (name, profession, age)
+VALUES ("Ryan Reynolds", "actor", 46);
+INSERT INTO famouspeople (name, profession, age)
+VALUES ("John Legend", "singer", 44);
+INSERT INTO famouspeople (name, profession, age)
+VALUES ("Chrissy Teigan", "model", 37);
+INSERT INTO famouspeople (name, profession, age)
+VALUES ("David Beckham", "athlete", 47);
+INSERT INTO famouspeople (name, profession, age)
+VALUES ("Victoria Beckham", "designer", 49);
+INSERT INTO famouspeople (name, profession, age)
+VALUES ("Dax Shephard", "actor", 48);
+INSERT INTO famouspeople (name, profession, age)
+VALUES ("Kristen Bell", "actor", 42);
+INSERT INTO famouspeople (name, profession, age)
+VALUES ("Emily Blunt", "actor", 40);
+INSERT INTO famouspeople (name, profession, age)
+VALUES ("John Krasinski", "actor", 43);
+
+CREATE TABLE popularmovies
+    (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT,
+    release_year INTEGER,
+    actor_id INTEGER);
+    
+INSERT INTO popularmovies (title, release_year, actor_id)
+VALUES ("The Shallows", 2016, 1);
+INSERT INTO popularmovies (title, release_year, actor_id)
+VALUES ("Deadpool", 2016, 2);
+INSERT INTO popularmovies (title, release_year, actor_id)
+VALUES ("Idiocracy", 2006, 7);
+INSERT INTO popularmovies (title, release_year, actor_id)
+VALUES ("Frozen", 2013, 8);
+INSERT INTO popularmovies (title, release_year, actor_id)
+VALUES ("A Quiet Place", 2018, 9);
+INSERT INTO popularmovies (title, release_year, actor_id)
+VALUES ("A Quiet Place", 2018, 10);
+
+CREATE TABLE spouses
+    (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    husband_id INTEGER,
+    wife_id INTEGER);
+    
+INSERT INTO spouses (husband_id, wife_id)
+VALUES (2, 1);
+INSERT INTO spouses (husband_id, wife_id)
+VALUES (3, 4);
+INSERT INTO spouses (husband_id, wife_id)
+VALUES (5, 6);
+INSERT INTO spouses (husband_id, wife_id)
+VALUES (7, 8);
+INSERT INTO spouses (husband_id, wife_id)
+VALUES (10, 9);
+
+/*Create a table that shows the names of famous people from the famouspeople table with one of their popular movies from the popularmovies table*/
+
+SELECT famouspeople.name, popularmovies.title, popularmovies.release_year
+FROM famouspeople
+JOIN popularmovies
+ON popularmovies.actor_id = famouspeople.id;
+
+/*Create a table that shows the names of famous people from the famouspeople table next to their spouses names from the famous people table*/
+
+SELECT husband.name, husband.age, wife.name, wife.age
+FROM spouses
+JOIN famouspeople husband
+    ON spouses.husband_id = husband.id
+JOIN famouspeople wife
+    ON spouses.wife_id = wife.id
