@@ -75,4 +75,4 @@ FROM spouses
 JOIN famouspeople husband
     ON spouses.husband_id = husband.id
 JOIN famouspeople wife
-    ON spouses.wife_id = wife.id
+    ON spouses.wife_id = wife.id;
