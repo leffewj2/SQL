@@ -1,0 +1,51 @@
+--In this project, I used SQLite Studio and a premade database of customer and order data to answer specific qustions that would be useful in real life.
+
+--#1. How many orders were placed in January?
+SELECT COUNT(orderID) 
+FROM BIT_DB.JanSales
+WHERE length(orderID)=6 AND orderID <> 'Order ID';
+--Answer: 9681
+
+--#2. How many of those orders were for an iPhone?
+SELECT COUNT(Product) 
+FROM BIT_DB.JanSales
+WHERE Product = 'iPhone';
+--Answer: 379
+
+--#3. Select the customer account numbers for all the orders that were placed in February.
+SELECT customers.acctnum
+FROM BIT_DB.customers customers
+INNER JOIN BIT_DB.FebSales FebSales
+WHERE customers.order_id=FebSales.orderID
+AND customers.order_id<>'OrderID'
+AND customers.order_id IS NOT NULL;
+
+--#4.Which product was the cheapest one sold in January, and what was the price?
+SELECT JanSales.Product, MIN(JanSales.price)
+FROM BIT_DB.JanSales JanSales
+WHERE JanSales.orderID IS NOT NULL
+AND JanSales.orderID <> 'Order ID'
+ORDER BY JanSales.Product;
+--Answer: AAA Batteries (4 pack) for $2.99.
+
+--#5.What is the total revenue for each product sold in January?
+SELECT SUM(Quantity)*price AS revenue, Product
+FROM BIT_DB.JanSales
+GROUP BY Product;
+
+--#6.Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and what was the total revenue?
+SELECT SUM(Quantity), Product, SUM(Quantity)*price as revenue
+FROM BIT_DB.FebSales
+WHERE location = '548 Lincoln St, Seattle, WA 98101'
+GROUP BY Product;
+
+--#7. How many customers ordered more than 2 products at a time in February, and what was the average amount spent for those customers?
+SELECT COUNT(distinct customers.acctnum), AVG(FebSales.Quantity)*FebSales.price AS avg_amount_spent
+FROM BIT_DB.FebSales FebSales
+LEFT JOIN BIT_DB.customers customers
+ON FebSales.OrderID=customers.order_id
+WHERE FebSales.Quantity > 2
+AND length(customers.order_id)=6
+AND customers.order_ID <> 'Order ID';
+--Answer: 278 Customers, AVG amount spent = $12.79
+
