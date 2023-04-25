@@ -49,3 +49,9 @@ AND length(customers.order_id)=6
 AND customers.order_ID <> 'Order ID';
 --Answer: 278 Customers, AVG amount spent = $12.79
 
+--#8. List all the products sold in Los Angeles in February, and include how many of each were sold.
+SELECT Product, SUM(Quantity)
+FROM BIT_DB.FebSales
+WHERE location LIKE '%Los Angeles%'
+GROUP BY Product
+
