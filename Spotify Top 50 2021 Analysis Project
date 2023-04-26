@@ -31,3 +31,12 @@ WHERE popularity>=(SELECT avg(popularity) FROM BIT_DB.Spotifydata);
 SELECT avg(danceability) FROM BIT_DB.Spotifydata
 WHERE id>=10;
 
+--In this case, I used a CTE (common table expression) to find the names and average popularity of artists with a popularity of at least 90, and assigning them the value 'Top Star' in a new 'Tag' column
+WITH popularity_avg_CTE AS (
+SELECT s.artist_name, AVG(popularity) AS average_popularity
+FROM SpotifyData s
+GROUP BY s.artist_name
+)
+SELECT artist_name, average_popularity, 'Top Star' AS tag
+FROM popularity_avg_CTE
+WHERE average_popularity>=90;
