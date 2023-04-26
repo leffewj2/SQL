@@ -70,7 +70,16 @@ LEFT JOIN chinook.artists artists
     ON artists.ArtistId=albums.ArtistId;
  
 --#12. Provide a query that shows all the Tracks, and include the Album name, Media type, and Genre.
-
+SELECT tracks.Name as Track, albums.Title as Album, 
+media_type.Name as Media_Type, genres.Name as Genre
+FROM chinook.tracks tracks
+JOIN chinook.albums albums
+    ON tracks.AlbumId=albums.AlbumId
+JOIN chinook.media_types media_type
+    ON media_type.MediaTypeId=tracks.MediaTypeId
+JOIN chinook.genres genres
+    ON tracks.GenreId=genres.GenreId
+GROUP BY track
 
 
 
