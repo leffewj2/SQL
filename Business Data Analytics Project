@@ -81,6 +81,20 @@ JOIN chinook.genres genres
     ON tracks.GenreId=genres.GenreId
 GROUP BY track
 
+--#13. Show the total sales made by each sales agent.
+SELECT employees.FirstName, employees.LastName,
+ROUND(SUM(Invoices.Total), 2) as 'Total Sales' 
+FROM chinook.Employees employees
+JOIN chinook.Customers customers
+    ON customers.SupportRepId = employees.EmployeeId
+JOIN chinook.Invoices Invoices
+    ON Invoices.CustomerId = customers.CustomerId
+WHERE employees.Title = 'Sales Support Agent' 
+GROUP BY employees.FirstName;
+
+--#14. Which sales agent made the most dollars in sales in 2009?
+
+
 
 
 
