@@ -1,0 +1,12 @@
+--In this project, I pulled a database with various information about the top 50 Spotify Songs in 2021.
+--I used SQLiteStudio to answer various questions about the data
+
+--#1. Find all tracks with above average popularity. Display artist name, track name, and popularity.
+--Using a nested query to find the average popularity of all 50 songs in the database:
+SELECT artist_name, track_name, popularity FROM BIT_DB.Spotifydata
+WHERE popularity>=(SELECT avg(popularity) FROM BIT_DB.Spotifydata);
+
+--#2. What is the average danceability of the top 10 songs?
+SELECT avg(danceability) FROM BIT_DB.Spotifydata
+WHERE id>=10;
+
